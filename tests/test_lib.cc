@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include <catch.hpp>
 
-#include "Arduino.h"
+#include "../src/Arduino.h"
 
 
 TEST_CASE("Read one byte", "[arduino]") {

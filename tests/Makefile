@@ -1,15 +1,13 @@
 EXEC := run_tests
 MAIN := test_lib
-TESTS :=
-FIXTURES := Arduino
+FIXTURES := ../src/Arduino
 
 
 CC := g++
-INCLUDE_PATH := .
 CC_ARGS := -Wno-pmf-conversions
 
 
-OBJS := $(addsuffix .o, $(TESTS) $(FIXTURES))
+OBJS := $(addsuffix .o, $(FIXTURES))
 
 .PHONY: clean distclean
 
@@ -17,13 +15,13 @@ OBJS := $(addsuffix .o, $(TESTS) $(FIXTURES))
 all: $(EXEC)
 
 $(EXEC): $(OBJS)
-	$(CC) -o $@ $(MAIN).cc $^
+	$(CC) -o $@ $(MAIN).cc $(notdir $^)
 
 %.o: %.cc
-	$(CC) $(CC_ARGS) -I $(INCLUDE_PATH) -c $<
+	$(CC) $(CC_ARGS) -c $<
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(notdir $(OBJS))
 
 distclean: clean
 	rm -f $(EXEC)
