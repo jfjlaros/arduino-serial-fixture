@@ -47,7 +47,7 @@ template<class T>
 T HardwareSerial::_inspect(void) {
   T data;
 
-  strncpy((char *)&data, txBuffer, sizeof(T));
+  memcpy((void *)&data, (const void *)txBuffer, sizeof(T));
 
   return data;
 }
@@ -101,7 +101,7 @@ size_t HardwareSerial::_prepare(const char *data, Args... args) {
  */
 template<class T, class... Args>
 size_t HardwareSerial::_prepare(T data, Args... args) {
-  strncpy(&rxBuffer[rx], (char *)&data, sizeof(T));
+  memcpy((void *)&rxBuffer[rx], (const void *)&data, sizeof(T));
   rx += sizeof(T);
 
   return sizeof(T) + _prepare(args...);

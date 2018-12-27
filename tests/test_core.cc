@@ -40,7 +40,7 @@ TEST_CASE("Read multiple bytes", "[core]") {
   Serial.reset();
   strcpy(Serial.rxBuffer, "xyz");
 
-  // Test the readBytes() funcion.
+  // Test the readBytes() function.
   Serial.readBytes(buffer, 1);
   REQUIRE(buffer[0] == 'x');
   REQUIRE(Serial.rx == 1);
@@ -79,6 +79,7 @@ TEST_CASE("Write one byte", "[core]") {
 
 TEST_CASE("Write multiple bytes", "[core]") {
   byte buffer[] = "xyz";
+  float f = 1.0F;
 
   Serial.reset();
 
@@ -91,6 +92,10 @@ TEST_CASE("Write multiple bytes", "[core]") {
   REQUIRE(Serial.txBuffer[1] == 'y');
   REQUIRE(Serial.txBuffer[2] == 'z');
   REQUIRE(Serial.tx == 3);
+
+  // Test for internal NULL characters.
+  Serial.write((byte *)&f, sizeof(float));
+  REQUIRE(((float *)&Serial.txBuffer[3])[0] == 1.0F);
 }
 
 TEST_CASE("Write string", "[core]") {

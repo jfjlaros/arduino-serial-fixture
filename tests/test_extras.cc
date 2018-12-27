@@ -57,6 +57,11 @@ TEST_CASE("Inspect output buffer", "[extras]") {
 
   REQUIRE(Serial.inspect<char>() == 'x');
   REQUIRE(Serial.tx == 0);
+
+  // Test for internal NULL characters.
+  Serial.reset();
+  Serial.autoWrite(1.0F);
+  REQUIRE(Serial.inspect<float>() == 1.0F);
 }
 
 TEST_CASE("Prepare input buffer", "[extras]") {
