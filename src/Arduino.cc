@@ -7,9 +7,6 @@
  * Constructor.
  */
 HardwareSerial::HardwareSerial(void) {
-  rxBuffer[_BUFFER_SIZE - 1] = '\0';
-  txBuffer[_BUFFER_SIZE - 1] = '\0';
-
   reset();
 }
 
@@ -17,8 +14,15 @@ HardwareSerial::HardwareSerial(void) {
  * Reset the internal counters.
  */
 void HardwareSerial::reset(void) {
+  int i;
+
   rx = 0;
   tx = 0;
+
+  for (i = 0; i < _BUFFER_SIZE; i++) {
+    rxBuffer[i] = '\0';
+    txBuffer[i] = '\0';
+  }
 }
 
 /**
@@ -102,9 +106,9 @@ size_t HardwareSerial::write(byte *buffer, size_t size) {
  * @return {size_t} - Number of bytes written.
  */
 size_t HardwareSerial::write(String s) {
-  size_t size = s.length();
+  size_t size = s.length() + 1;
 
-  strncpy(&txBuffer[tx], s.c_str(), size);
+  strcpy(&txBuffer[tx], s.c_str());
   tx += size;
 
   return size;

@@ -61,7 +61,6 @@ template<class T>
 T HardwareSerial::inspect(void) {
   T data;
 
-  reset();
   data = _inspect<T>();
 
   return data;
@@ -119,9 +118,8 @@ template<class... Args>
 size_t HardwareSerial::prepare(Args... args) {
   size_t size;
 
-  reset();
   size = _prepare(args...);
-  reset();
+  rx = 0;
 
   return size;
 }
