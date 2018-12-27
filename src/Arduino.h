@@ -23,8 +23,8 @@ class HardwareSerial {
     size_t write(char),
            write(byte *, size_t),
            write(String);
-    template<class T> T _read(void);
-    template<class T> size_t _write(T);
+    template<class T> T autoRead(void);
+    template<class T> size_t autoWrite(T);
     template<class T> T inspect(void);
     template<class... Args> size_t prepare(Args...);
     size_t rx,

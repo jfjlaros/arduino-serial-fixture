@@ -8,7 +8,7 @@
  * @return {T} - Value.
  */
 template<class T>
-T HardwareSerial::_read(void) {
+T HardwareSerial::autoRead(void) {
   T data;
 
   readBytes((char *)&data, sizeof(T));
@@ -22,7 +22,7 @@ T HardwareSerial::_read(void) {
  * @arg {T} data - Value.
  */
 template<class T>
-size_t HardwareSerial::_write(T data) {
+size_t HardwareSerial::autoWrite(T data) {
   return write((byte *)&data, sizeof(T));
 }
 
