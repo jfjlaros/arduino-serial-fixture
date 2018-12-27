@@ -55,13 +55,17 @@ TEST_CASE("Inspect output buffer", "[extras]") {
   REQUIRE(Serial.inspect<String>() == "xxx");
   REQUIRE(Serial.tx == 0);
 
-  REQUIRE(Serial.inspect<char>() == 'x');
-  REQUIRE(Serial.tx == 0);
-
   // Test for internal NULL characters.
   Serial.reset();
   Serial.autoWrite(1.0F);
   REQUIRE(Serial.inspect<float>() == 1.0F);
+
+  // Test for multiple inspections.
+  Serial.reset();
+  Serial.autoWrite(1);
+  Serial.autoWrite('x');
+  REQUIRE(Serial.inspect<int>() == 1);
+  REQUIRE(Serial.inspect<char>() == 'x');
 }
 
 TEST_CASE("Prepare input buffer", "[extras]") {
@@ -72,5 +76,12 @@ TEST_CASE("Prepare input buffer", "[extras]") {
   REQUIRE(Serial.rx == 0);
   REQUIRE(Serial.autoRead<char>() == 'c');
   REQUIRE(Serial.readStringUntil('\0') == "xyz");
+  REQUIRE(Serial.autoRead<int>() == 10);
+
+  // Test for multiple preparations.
+  Serial.reset();
+  Serial.prepare('c');
+  Serial.prepare(10);
+  REQUIRE(Serial.autoRead<char>() == 'c');
   REQUIRE(Serial.autoRead<int>() == 10);
 }

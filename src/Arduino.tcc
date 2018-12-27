@@ -33,9 +33,11 @@ size_t HardwareSerial::autoWrite(T data) {
  */
 template<>
 inline String HardwareSerial::_inspect(void) {
-  size_t size = strchr(txBuffer, '\0') - rxBuffer;
+  String data = (String)&txBuffer[_tx];
 
-  return ((String)txBuffer).substr(0, size);
+  _tx += data.length() + 1;
+
+  return data;
 }
 
 /**
@@ -47,7 +49,8 @@ template<class T>
 T HardwareSerial::_inspect(void) {
   T data;
 
-  memcpy((void *)&data, (const void *)txBuffer, sizeof(T));
+  memcpy((void *)&data, (const void *)&txBuffer[_tx], sizeof(T));
+  _tx += sizeof(T);
 
   return data;
 }
@@ -85,8 +88,8 @@ template<class... Args>
 size_t HardwareSerial::_prepare(const char *data, Args... args) {
   size_t size = strlen(data);
 
-  strcpy(&rxBuffer[rx], data);
-  rx += size + 1;
+  strcpy(&rxBuffer[_rx], data);
+  _rx += size + 1;
 
   return size + _prepare(args...);
 }
@@ -101,8 +104,8 @@ size_t HardwareSerial::_prepare(const char *data, Args... args) {
  */
 template<class T, class... Args>
 size_t HardwareSerial::_prepare(T data, Args... args) {
-  memcpy((void *)&rxBuffer[rx], (const void *)&data, sizeof(T));
-  rx += sizeof(T);
+  memcpy((void *)&rxBuffer[_rx], (const void *)&data, sizeof(T));
+  _rx += sizeof(T);
 
   return sizeof(T) + _prepare(args...);
 }
@@ -116,11 +119,9 @@ size_t HardwareSerial::_prepare(T data, Args... args) {
  */
 template<class... Args>
 size_t HardwareSerial::prepare(Args... args) {
-  size_t _rx = rx,
-         size;
+  size_t size;
 
   size = _prepare(args...);
-  rx = _rx;
 
   return size;
 }

@@ -16,6 +16,8 @@ void HardwareSerial::reset(void) {
 
   rx = 0;
   tx = 0;
+  _rx = 0;
+  _tx = 0;
 
   for (i = 0; i < _BUFFER_SIZE; i++) {
     rxBuffer[i] = '\0';

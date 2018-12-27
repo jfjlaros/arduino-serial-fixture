@@ -36,6 +36,8 @@ class HardwareSerial {
     inline size_t _prepare(void);
     template<class... Args> size_t _prepare(const char *, Args...);
     template<class T, class... Args> size_t _prepare(T, Args...);
+    size_t _rx,
+           _tx;
 
 };
 
