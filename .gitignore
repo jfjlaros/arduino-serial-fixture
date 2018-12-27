@@ -1,2 +1,3 @@
+src/Arduino.o
 tests/*.o
 tests/run_tests
