@@ -106,7 +106,7 @@ size_t HardwareSerial::write(byte *buffer, size_t size) {
  * @return {size_t} - Number of bytes written.
  */
 size_t HardwareSerial::write(String s) {
-  size_t size = s.length() + 1;
+  size_t size = s.length();
 
   strcpy(&txBuffer[tx], s.c_str());
   tx += size;

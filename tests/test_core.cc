@@ -101,11 +101,11 @@ TEST_CASE("Write string", "[core]") {
   REQUIRE(Serial.txBuffer[0] == 'a');
   REQUIRE(Serial.txBuffer[1] == 'b');
   REQUIRE(Serial.txBuffer[2] == 'c');
-  REQUIRE(Serial.tx == 4);
+  REQUIRE(Serial.tx == 3);
 
   Serial.write("xyz");
-  REQUIRE(Serial.txBuffer[4] == 'x');
-  REQUIRE(Serial.txBuffer[5] == 'y');
-  REQUIRE(Serial.txBuffer[6] == 'z');
-  REQUIRE(Serial.tx == 8);
+  REQUIRE(Serial.txBuffer[3] == 'x');
+  REQUIRE(Serial.txBuffer[4] == 'y');
+  REQUIRE(Serial.txBuffer[5] == 'z');
+  REQUIRE(Serial.tx == 6);
 }
