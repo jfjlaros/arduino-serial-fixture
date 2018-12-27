@@ -116,10 +116,11 @@ size_t HardwareSerial::_prepare(T data, Args... args) {
  */
 template<class... Args>
 size_t HardwareSerial::prepare(Args... args) {
-  size_t size;
+  size_t _rx = rx,
+         size;
 
   size = _prepare(args...);
-  rx = 0;
+  rx = _rx;
 
   return size;
 }
