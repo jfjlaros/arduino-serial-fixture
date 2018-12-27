@@ -5,7 +5,6 @@ FIXTURES := ../src/Arduino
 
 
 CC := g++
-CC_ARGS := -Wno-pmf-conversions
 
 
 OBJS := $(addsuffix .o, $(TESTS) $(FIXTURES))
@@ -19,7 +18,7 @@ $(EXEC): $(OBJS)
 	$(CC) -o $@ $(MAIN).cc $(notdir $^)
 
 %.o: %.cc
-	$(CC) $(CC_ARGS) -c $<
+	$(CC) -c $<
 
 clean:
 	rm -f $(notdir $(OBJS))
