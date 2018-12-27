@@ -1,5 +1,3 @@
-#include <valarray>
-
 #include "Arduino.h"
 
 
