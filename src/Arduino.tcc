@@ -126,5 +126,4 @@ size_t HardwareSerial::prepare(Args... args) {
   return size;
 }
 
-
 #endif
