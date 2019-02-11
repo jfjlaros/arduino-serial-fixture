@@ -22,7 +22,8 @@ class HardwareSerial {
     String readStringUntil(char);
     size_t write(char),
            write(byte *, size_t),
-           write(String);
+           write(String),
+           print(String);
     template<class T> T autoRead(void);
     template<class T> size_t autoWrite(T);
     template<class T> T inspect(void);

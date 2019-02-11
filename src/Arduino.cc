@@ -114,5 +114,9 @@ size_t HardwareSerial::write(String s) {
   return size;
 }
 
+size_t HardwareSerial::print(String s) {
+  return write(s);
+}
+
 
 HardwareSerial Serial;
