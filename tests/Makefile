@@ -9,16 +9,19 @@ CC := g++
 
 OBJS := $(addsuffix .o, $(TESTS) $(FIXTURES))
 
-.PHONY: clean distclean
+.PHONY: all check clean distclean
 
 
 all: $(EXEC)
 
-$(EXEC): $(OBJS)
-	$(CC) -o $@ $(MAIN).cc $^
+$(EXEC): $(MAIN).cc $(OBJS)
+	$(CC) -o $@ $^
 
 %.o: %.cc
 	$(CC) -o $@ -c $<
+
+check: all
+	valgrind ./$(EXEC)
 
 clean:
 	rm -f $(OBJS)
