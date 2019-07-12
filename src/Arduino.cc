@@ -28,7 +28,7 @@ void HardwareSerial::reset(void) {
 /**
  * Test for serial availability.
  *
- * @return {bool} - True;
+ * @return True;
  */
 bool HardwareSerial::available(void) {
   return true;
@@ -37,7 +37,7 @@ bool HardwareSerial::available(void) {
 /**
  * Read one byte from serial.
  *
- * @return {byte} - One byte;
+ * @return One byte;
  */
 byte HardwareSerial::read(void) {
   rx++;
@@ -48,8 +48,8 @@ byte HardwareSerial::read(void) {
 /**
  * Read a number of bytes from serial.
  *
- * @arg {char*} buffer - Buffer.
- * @arg {size_t} size - Number of bytes to read.
+ * @param buffer Buffer.
+ * @param size Number of bytes to read.
  */
 void HardwareSerial::readBytes(char* buffer, size_t size) {
   memcpy((void*)buffer, (const void*)&rxBuffer[rx], size);
@@ -59,9 +59,9 @@ void HardwareSerial::readBytes(char* buffer, size_t size) {
 /**
  * Read a string from serial.
  *
- * @arg {char} delimiter - String delimiter.
+ * @param delimiter String delimiter.
  *
- * @return {String} - A string.
+ * @return A string.
  */
 String HardwareSerial::readStringUntil(char delimiter) {
   size_t size = strchr(&rxBuffer[rx], delimiter) - &rxBuffer[rx] + 1;
@@ -74,7 +74,7 @@ String HardwareSerial::readStringUntil(char delimiter) {
 /**
  * Write one byte to serial.
  *
- * @return {size_t} - Number of bytes written.
+ * @return Number of bytes written.
  */
 size_t HardwareSerial::write(char c) {
   txBuffer[tx] = c;
@@ -86,10 +86,10 @@ size_t HardwareSerial::write(char c) {
 /**
  * Write a number of bytes to serial.
  *
- * @arg {byte*} buffer - Buffer.
- * @arg {size_t} size - Number of bytes to read.
+ * @param buffer Buffer.
+ * @param size Number of bytes to read.
  *
- * @return {size_t} - Number of bytes written.
+ * @return Number of bytes written.
  */
 size_t HardwareSerial::write(byte* buffer, size_t size) {
   memcpy((void*)&txBuffer[tx], (const void*)buffer, size);
@@ -101,9 +101,9 @@ size_t HardwareSerial::write(byte* buffer, size_t size) {
 /**
  * Write a string to serial.
  *
- * @arg {String} s - A string.
+ * @param s A string.
  *
- * @return {size_t} - Number of bytes written.
+ * @return Number of bytes written.
  */
 size_t HardwareSerial::write(String s) {
   size_t size = s.length();

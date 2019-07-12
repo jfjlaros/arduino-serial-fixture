@@ -5,7 +5,7 @@
 /**
  * Read from serial.
  *
- * @return {T} - Value.
+ * @return Value.
  */
 template <class T>
 T HardwareSerial::autoRead(void) {
@@ -19,7 +19,7 @@ T HardwareSerial::autoRead(void) {
 /**
  * Write to serial.
  *
- * @arg {T} data - Value.
+ * @param data Value.
  */
 template <class T>
 size_t HardwareSerial::autoWrite(T data) {
@@ -29,7 +29,7 @@ size_t HardwareSerial::autoWrite(T data) {
 /**
  * Read a string from the output buffer.
  *
- * @return {String} - A string.
+ * @return A string.
  */
 template <>
 inline String HardwareSerial::_inspect(void) {
@@ -43,7 +43,7 @@ inline String HardwareSerial::_inspect(void) {
 /**
  * Read a value with a basic type from the output buffer.
  *
- * @return {T} - A value of type T.
+ * @return A value of type T.
  */
 template <class T>
 T HardwareSerial::_inspect(void) {
@@ -58,7 +58,7 @@ T HardwareSerial::_inspect(void) {
 /**
  * Read any value from the output buffer.
  *
- * @return {T} - A value of type T.
+ * @return A value of type T.
  */
 template <class T>
 T HardwareSerial::inspect(void) {
@@ -79,10 +79,10 @@ inline size_t HardwareSerial::_prepare(void) {
 /**
  * Write a string to the input buffer.
  *
- * @arg {const char*} data - A string.
- * @arg {Args...} args - Other parameters.
+ * @param data A string.
+ * @param args Other parameters.
  *
- * @return {size_t} - Number of bytes written.
+ * @return Number of bytes written.
  */
 template <class... Args>
 size_t HardwareSerial::_prepare(const char* data, Args... args) {
@@ -97,10 +97,10 @@ size_t HardwareSerial::_prepare(const char* data, Args... args) {
 /**
  * Write a value of basic type to the input buffer.
  *
- * @arg {T} data - A value of type T.
- * @arg {Args...} args - Other parameters.
+ * @param data A value of type T.
+ * @param args Other parameters.
  *
- * @return {size_t} - Number of bytes written.
+ * @return Number of bytes written.
  */
 template <class T, class... Args>
 size_t HardwareSerial::_prepare(T data, Args... args) {
@@ -113,9 +113,9 @@ size_t HardwareSerial::_prepare(T data, Args... args) {
 /**
  * Write any value to the input buffer.
  *
- * @arg {Args...} args - Parameters.
+ * @param args Parameters.
  *
- * @return {size_t} - Number of bytes written.
+ * @return Number of bytes written.
  */
 template <class... Args>
 size_t HardwareSerial::prepare(Args... args) {
