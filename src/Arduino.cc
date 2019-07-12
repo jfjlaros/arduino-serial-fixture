@@ -48,11 +48,11 @@ byte HardwareSerial::read(void) {
 /**
  * Read a number of bytes from serial.
  *
- * @arg {char *} buffer - Buffer.
+ * @arg {char*} buffer - Buffer.
  * @arg {size_t} size - Number of bytes to read.
  */
-void HardwareSerial::readBytes(char *buffer, size_t size) {
-  memcpy((void *)buffer, (const void *)&rxBuffer[rx], size);
+void HardwareSerial::readBytes(char* buffer, size_t size) {
+  memcpy((void*)buffer, (const void*)&rxBuffer[rx], size);
   rx += size;
 }
 
@@ -86,13 +86,13 @@ size_t HardwareSerial::write(char c) {
 /**
  * Write a number of bytes to serial.
  *
- * @arg {byte *} buffer - Buffer.
+ * @arg {byte*} buffer - Buffer.
  * @arg {size_t} size - Number of bytes to read.
  *
  * @return {size_t} - Number of bytes written.
  */
-size_t HardwareSerial::write(byte *buffer, size_t size) {
-  memcpy((void *)&txBuffer[tx], (const void *)buffer, size);
+size_t HardwareSerial::write(byte* buffer, size_t size) {
+  memcpy((void*)&txBuffer[tx], (const void*)buffer, size);
   tx += size;
 
   return size;

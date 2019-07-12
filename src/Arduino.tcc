@@ -7,11 +7,11 @@
  *
  * @return {T} - Value.
  */
-template<class T>
+template <class T>
 T HardwareSerial::autoRead(void) {
   T data;
 
-  readBytes((char *)&data, sizeof(T));
+  readBytes((char*)&data, sizeof(T));
 
   return data;
 }
@@ -21,9 +21,9 @@ T HardwareSerial::autoRead(void) {
  *
  * @arg {T} data - Value.
  */
-template<class T>
+template <class T>
 size_t HardwareSerial::autoWrite(T data) {
-  return write((byte *)&data, sizeof(T));
+  return write((byte*)&data, sizeof(T));
 }
 
 /**
@@ -31,7 +31,7 @@ size_t HardwareSerial::autoWrite(T data) {
  *
  * @return {String} - A string.
  */
-template<>
+template <>
 inline String HardwareSerial::_inspect(void) {
   String data = (String)&txBuffer[_tx];
 
@@ -45,11 +45,11 @@ inline String HardwareSerial::_inspect(void) {
  *
  * @return {T} - A value of type T.
  */
-template<class T>
+template <class T>
 T HardwareSerial::_inspect(void) {
   T data;
 
-  memcpy((void *)&data, (const void *)&txBuffer[_tx], sizeof(T));
+  memcpy((void*)&data, (const void*)&txBuffer[_tx], sizeof(T));
   _tx += sizeof(T);
 
   return data;
@@ -60,7 +60,7 @@ T HardwareSerial::_inspect(void) {
  *
  * @return {T} - A value of type T.
  */
-template<class T>
+template <class T>
 T HardwareSerial::inspect(void) {
   T data;
 
@@ -79,13 +79,13 @@ inline size_t HardwareSerial::_prepare(void) {
 /**
  * Write a string to the input buffer.
  *
- * @arg {const char *} data - A string.
+ * @arg {const char*} data - A string.
  * @arg {Args...} args - Other parameters.
  *
  * @return {size_t} - Number of bytes written.
  */
-template<class... Args>
-size_t HardwareSerial::_prepare(const char *data, Args... args) {
+template <class... Args>
+size_t HardwareSerial::_prepare(const char* data, Args... args) {
   size_t size = strlen(data);
 
   strcpy(&rxBuffer[_rx], data);
@@ -102,9 +102,9 @@ size_t HardwareSerial::_prepare(const char *data, Args... args) {
  *
  * @return {size_t} - Number of bytes written.
  */
-template<class T, class... Args>
+template <class T, class... Args>
 size_t HardwareSerial::_prepare(T data, Args... args) {
-  memcpy((void *)&rxBuffer[_rx], (const void *)&data, sizeof(T));
+  memcpy((void*)&rxBuffer[_rx], (const void*)&data, sizeof(T));
   _rx += sizeof(T);
 
   return sizeof(T) + _prepare(args...);
@@ -117,7 +117,7 @@ size_t HardwareSerial::_prepare(T data, Args... args) {
  *
  * @return {size_t} - Number of bytes written.
  */
-template<class... Args>
+template <class... Args>
 size_t HardwareSerial::prepare(Args... args) {
   size_t size;
 

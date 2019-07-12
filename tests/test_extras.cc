@@ -14,12 +14,12 @@ TEST_CASE("Read different types", "[extras]") {
   REQUIRE(Serial.autoRead<char>() == 'x');
   REQUIRE(Serial.rx == offset);
 
-  ((int *)&Serial.rxBuffer[offset])[0] = 1234;
+  ((int*)&Serial.rxBuffer[offset])[0] = 1234;
   offset += sizeof(int);
   REQUIRE(Serial.autoRead<int>() == 1234);
   REQUIRE(Serial.rx == offset);
 
-  ((float *)&Serial.rxBuffer[offset])[0] = 3.14F;
+  ((float*)&Serial.rxBuffer[offset])[0] = 3.14F;
   offset += sizeof(float);
   REQUIRE(Serial.autoRead<float>() == 3.14F);
   REQUIRE(Serial.rx == offset);
@@ -37,12 +37,12 @@ TEST_CASE("Write different types", "[extras]") {
   REQUIRE(Serial.tx == offset);
 
   Serial.autoWrite(1234);
-  REQUIRE(((int *)&Serial.txBuffer[offset])[0] == 1234);
+  REQUIRE(((int*)&Serial.txBuffer[offset])[0] == 1234);
   offset += sizeof(int);
   REQUIRE(Serial.tx == offset);
 
   Serial.autoWrite(3.14F);
-  REQUIRE(((float *)&Serial.txBuffer[offset])[0] == 3.14F);
+  REQUIRE(((float*)&Serial.txBuffer[offset])[0] == 3.14F);
   offset += sizeof(float);
   REQUIRE(Serial.tx == offset);
 }

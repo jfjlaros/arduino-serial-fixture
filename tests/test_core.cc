@@ -83,7 +83,7 @@ TEST_CASE("Write multiple bytes", "[core]") {
 
   Serial.reset();
 
-  // Test the write(byte *, size_t) function.
+  // Test the write(byte*, size_t) function.
   Serial.write(buffer, 1);
   REQUIRE(Serial.txBuffer[0] == 'x');
   REQUIRE(Serial.tx == 1);
@@ -94,8 +94,8 @@ TEST_CASE("Write multiple bytes", "[core]") {
   REQUIRE(Serial.tx == 3);
 
   // Test for internal NULL characters.
-  Serial.write((byte *)&f, sizeof(float));
-  REQUIRE(((float *)&Serial.txBuffer[3])[0] == 1.0F);
+  Serial.write((byte*)&f, sizeof(float));
+  REQUIRE(((float*)&Serial.txBuffer[3])[0] == 1.0F);
 }
 
 TEST_CASE("Write string", "[core]") {
