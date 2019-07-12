@@ -1,6 +1,5 @@
-#ifndef __ARDUINO_TCC__
-#define __ARDUINO_TCC__
-
+#ifndef ARDUINO_SERIAL_FIXTURE_ARDUINO_TCC_
+#define ARDUINO_SERIAL_FIXTURE_ARDUINO_TCC_
 
 /**
  * Read from serial.

@@ -1,5 +1,5 @@
-#ifndef __ARDUINO_H__
-#define __ARDUINO_H__
+#ifndef ARDUINO_SERIAL_FIXTURE_ARDUINO_H_
+#define ARDUINO_SERIAL_FIXTURE_ARDUINO_H_
 
 #include <string.h>
 #include <string>
