@@ -10,18 +10,19 @@ using namespace std;
 
 typedef string String;
 typedef unsigned char byte;
-
+struct __FlashStringHelper;
 
 class HardwareSerial {
   public:
     HardwareSerial(void);
+    void begin(size_t) {}
     void reset(void);
     bool available(void);
     byte read(void);
-    void readBytes(char*, size_t);
+    size_t readBytes(char*, size_t);
     String readStringUntil(char);
     size_t write(char),
-           write(byte*, size_t),
+           write(const byte*, size_t),
            write(String),
            print(String);
     template <class T> T autoRead(void);
@@ -39,8 +40,9 @@ class HardwareSerial {
     template <class T, class... Args> size_t _prepare(T, Args...);
     size_t _rx,
            _tx;
-
 };
+
+byte pgm_read_byte(byte*);
 
 
 #include "Arduino.tcc"
