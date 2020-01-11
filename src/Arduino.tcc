@@ -42,7 +42,7 @@ inline String HardwareSerial::_inspect(void) {
 /**
  * Read a value with a basic type from the output buffer.
  *
- * @return A value of type T.
+ * @return A value of type @a T.
  */
 template <class T>
 T HardwareSerial::_inspect(void) {
@@ -57,7 +57,7 @@ T HardwareSerial::_inspect(void) {
 /**
  * Read any value from the output buffer.
  *
- * @return A value of type T.
+ * @return A value of type @a T.
  */
 template <class T>
 T HardwareSerial::inspect(void) {
@@ -69,7 +69,7 @@ T HardwareSerial::inspect(void) {
 }
 
 /**
- * Recursion terminator for _prepare().
+ * Recursion terminator for @a _prepare().
  */
 inline size_t HardwareSerial::_prepare(void) {
   return 0;
@@ -96,7 +96,7 @@ size_t HardwareSerial::_prepare(const char* data, Args... args) {
 /**
  * Write a value of basic type to the input buffer.
  *
- * @param data A value of type T.
+ * @param data A value of type @a T.
  * @param args Other parameters.
  *
  * @return Number of bytes written.
