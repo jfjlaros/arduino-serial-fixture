@@ -5,6 +5,7 @@ FIXTURES := ../src/Arduino
 
 
 CC := g++
+CFLAGS := -std=c++11
 
 
 OBJS := $(addsuffix .o, $(TESTS) $(FIXTURES))
@@ -15,10 +16,10 @@ OBJS := $(addsuffix .o, $(TESTS) $(FIXTURES))
 all: $(EXEC)
 
 $(EXEC): $(MAIN).cc $(OBJS)
-	$(CC) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.cc
-	$(CC) -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 check: all
 	valgrind ./$(EXEC)
