@@ -4,14 +4,14 @@
 /**
  * Constructor.
  */
-HardwareSerial::HardwareSerial(void) {
+Stream::Stream(void) {
   reset();
 }
 
 /**
  * Reset the internal counters.
  */
-void HardwareSerial::reset(void) {
+void Stream::reset(void) {
   int i;
 
   rx = 0;
@@ -30,7 +30,7 @@ void HardwareSerial::reset(void) {
  *
  * @return True;
  */
-bool HardwareSerial::available(void) {
+bool Stream::available(void) {
   return true;
 }
 
@@ -39,7 +39,7 @@ bool HardwareSerial::available(void) {
  *
  * @return One byte;
  */
-byte HardwareSerial::read(void) {
+byte Stream::read(void) {
   rx++;
 
   return rxBuffer[rx - 1];
@@ -51,7 +51,7 @@ byte HardwareSerial::read(void) {
  * @param buffer Buffer.
  * @param size Number of bytes to read.
  */
-size_t HardwareSerial::readBytes(char* buffer, size_t size) {
+size_t Stream::readBytes(char* buffer, size_t size) {
   memcpy((void*)buffer, (const void*)&rxBuffer[rx], size);
   rx += size;
 
@@ -65,7 +65,7 @@ size_t HardwareSerial::readBytes(char* buffer, size_t size) {
  *
  * @return A string.
  */
-String HardwareSerial::readStringUntil(char delimiter) {
+String Stream::readStringUntil(char delimiter) {
   size_t size = strchr(&rxBuffer[rx], delimiter) - &rxBuffer[rx] + 1;
 
   rx += size;
@@ -78,7 +78,7 @@ String HardwareSerial::readStringUntil(char delimiter) {
  *
  * @return Number of bytes written.
  */
-size_t HardwareSerial::write(char c) {
+size_t Stream::write(char c) {
   txBuffer[tx] = c;
   tx++;
 
@@ -93,7 +93,7 @@ size_t HardwareSerial::write(char c) {
  *
  * @return Number of bytes written.
  */
-size_t HardwareSerial::write(const byte* buffer, size_t size) {
+size_t Stream::write(const byte* buffer, size_t size) {
   memcpy((void*)&txBuffer[tx], (const void*)buffer, size);
   tx += size;
 
@@ -107,7 +107,7 @@ size_t HardwareSerial::write(const byte* buffer, size_t size) {
  *
  * @return Number of bytes written.
  */
-size_t HardwareSerial::write(String s) {
+size_t Stream::write(String s) {
   size_t size = s.length();
 
   strcpy(&txBuffer[tx], s.c_str());
@@ -116,7 +116,7 @@ size_t HardwareSerial::write(String s) {
   return size;
 }
 
-size_t HardwareSerial::print(String s) {
+size_t Stream::print(String s) {
   return write(s);
 }
 
@@ -126,4 +126,4 @@ byte pgm_read_byte(byte*) {
 }
 
 
-HardwareSerial Serial;
+Stream Serial;

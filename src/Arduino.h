@@ -12,9 +12,9 @@ typedef string String;
 typedef unsigned char byte;
 struct __FlashStringHelper;
 
-class HardwareSerial {
+class Stream {
   public:
-    HardwareSerial(void);
+    Stream(void);
     void begin(size_t) {}
     void reset(void);
     bool available(void);
@@ -47,6 +47,6 @@ byte pgm_read_byte(byte*);
 
 #include "Arduino.tcc"
 
-extern HardwareSerial Serial;
+extern Stream Serial;
 
 #endif

@@ -7,7 +7,7 @@
  * @return Value.
  */
 template <class T>
-T HardwareSerial::autoRead(void) {
+T Stream::autoRead(void) {
   T data;
 
   readBytes((char*)&data, sizeof(T));
@@ -21,7 +21,7 @@ T HardwareSerial::autoRead(void) {
  * @param data Value.
  */
 template <class T>
-size_t HardwareSerial::autoWrite(T data) {
+size_t Stream::autoWrite(T data) {
   return write((byte*)&data, sizeof(T));
 }
 
@@ -31,7 +31,7 @@ size_t HardwareSerial::autoWrite(T data) {
  * @return A string.
  */
 template <>
-inline String HardwareSerial::_inspect(void) {
+inline String Stream::_inspect(void) {
   String data = (String)&txBuffer[_tx];
 
   _tx += data.length() + 1;
@@ -45,7 +45,7 @@ inline String HardwareSerial::_inspect(void) {
  * @return A value of type @a T.
  */
 template <class T>
-T HardwareSerial::_inspect(void) {
+T Stream::_inspect(void) {
   T data;
 
   memcpy((void*)&data, (const void*)&txBuffer[_tx], sizeof(T));
@@ -60,7 +60,7 @@ T HardwareSerial::_inspect(void) {
  * @return A value of type @a T.
  */
 template <class T>
-T HardwareSerial::inspect(void) {
+T Stream::inspect(void) {
   T data;
 
   data = _inspect<T>();
@@ -71,7 +71,7 @@ T HardwareSerial::inspect(void) {
 /**
  * Recursion terminator for @a _prepare().
  */
-inline size_t HardwareSerial::_prepare(void) {
+inline size_t Stream::_prepare(void) {
   return 0;
 }
 
@@ -84,7 +84,7 @@ inline size_t HardwareSerial::_prepare(void) {
  * @return Number of bytes written.
  */
 template <class... Args>
-size_t HardwareSerial::_prepare(const char* data, Args... args) {
+size_t Stream::_prepare(const char* data, Args... args) {
   size_t size = strlen(data);
 
   strcpy(&rxBuffer[_rx], data);
@@ -102,7 +102,7 @@ size_t HardwareSerial::_prepare(const char* data, Args... args) {
  * @return Number of bytes written.
  */
 template <class T, class... Args>
-size_t HardwareSerial::_prepare(T data, Args... args) {
+size_t Stream::_prepare(T data, Args... args) {
   memcpy((void*)&rxBuffer[_rx], (const void*)&data, sizeof(T));
   _rx += sizeof(T);
 
@@ -117,7 +117,7 @@ size_t HardwareSerial::_prepare(T data, Args... args) {
  * @return Number of bytes written.
  */
 template <class... Args>
-size_t HardwareSerial::prepare(Args... args) {
+size_t Stream::prepare(Args... args) {
   size_t size;
 
   size = _prepare(args...);
