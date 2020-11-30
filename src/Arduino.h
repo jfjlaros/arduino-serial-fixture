@@ -42,7 +42,7 @@ class Stream {
            _tx;
 };
 
-byte pgm_read_byte(byte*);
+byte pgm_read_byte(char const*);
 
 
 #include "Arduino.tcc"
