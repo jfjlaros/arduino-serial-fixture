@@ -3,8 +3,8 @@ Arduino Serial Fixture for unit tests
 
 .. image:: https://img.shields.io/github/last-commit/jfjlaros/arduino-serial-fixture.svg
    :target: https://github.com/jfjlaros/arduino-serial-fixture/graphs/commit-activity
-.. image:: https://travis-ci.org/jfjlaros/arduino-serial-fixture.svg?branch=master
-   :target: https://travis-ci.org/jfjlaros/arduino-serial-fixture
+.. image:: https://github.com/jfjlaros/arduino-serial-fixture/actions/workflows/arduino-package.yml/badge.svg
+   :target: https://github.com/jfjlaros/arduino-serial-fixture/actions/workflows/arduino-package.yml
 .. image:: https://readthedocs.org/projects/arduino-serial-fixture/badge/?version=latest
    :target: https://arduino-serial-fixture.readthedocs.io/en/latest
 .. image:: https://img.shields.io/github/release-date/jfjlaros/arduino-serial-fixture.svg
