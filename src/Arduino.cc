@@ -26,12 +26,12 @@ void Stream::reset(void) {
 }
 
 /**
- * Test for serial availability.
+ * Get the number of bytes available for reading.
  *
- * @return True;
+ * @return Number of bytes.
  */
-bool Stream::available(void) {
-  return true;
+int Stream::available(void) {
+  return _rx - rx;
 }
 
 /**
@@ -43,6 +43,15 @@ byte Stream::read(void) {
   rx++;
 
   return rxBuffer[rx - 1];
+}
+
+/**
+ * Read one byte from serial without removing it from the buffer.
+ *
+ * @return One byte;
+ */
+byte Stream::peek(void) {
+  return rxBuffer[rx];
 }
 
 /**

@@ -17,8 +17,9 @@ class Stream {
     Stream(void);
     void begin(size_t) {}
     void reset(void);
-    bool available(void);
+    int available(void);
     byte read(void);
+    byte peek(void);
     size_t readBytes(char*, size_t);
     String readStringUntil(char);
     size_t write(char),

@@ -19,7 +19,11 @@ TEST_CASE("Reset", "[core]") {
 }
 
 TEST_CASE("Available", "[core]") {
-  REQUIRE(Serial.available() == true);
+  Serial.reset();
+  REQUIRE(Serial.available() == 0);
+
+  Serial.prepare('0', '1');
+  REQUIRE(Serial.available() == 2);
 }
 
 TEST_CASE("Read one byte", "[core]") {
