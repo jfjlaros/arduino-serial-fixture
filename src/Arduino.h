@@ -13,34 +13,37 @@ typedef unsigned char byte;
 struct __FlashStringHelper;
 
 class Stream {
-  public:
-    Stream(void);
-    void begin(size_t) {}
-    void reset(void);
-    int available(void);
-    byte read(void);
-    byte peek(void);
-    size_t readBytes(char*, size_t);
-    String readStringUntil(char);
-    size_t write(char),
-           write(const byte*, size_t),
-           write(String),
-           print(String);
-    template <class T> T autoRead(void);
-    template <class T> size_t autoWrite(T);
-    template <class T> T inspect(void);
-    template <class... Args> size_t prepare(Args...);
-    size_t rx,
-           tx;
-    char rxBuffer[_BUFFER_SIZE],
-         txBuffer[_BUFFER_SIZE];
-  private:
-    template <class T> T _inspect(void);
-    inline size_t _prepare(void);
-    template <class... Args> size_t _prepare(const char*, Args...);
-    template <class T, class... Args> size_t _prepare(T, Args...);
-    size_t _rx,
-           _tx;
+public:
+  Stream();
+  void begin(size_t) {}
+  void reset();
+  int available();
+  byte read();
+  byte peek();
+  size_t readBytes(char*, size_t);
+  String readStringUntil(char);
+  size_t write(char),
+         write(const byte*, size_t),
+         write(String),
+         print(String);
+  template <class T> T autoRead();
+  template <class T> size_t autoWrite(T);
+  template <class T> T inspect();
+  template <class... Args> size_t prepare(Args...);
+
+  size_t rx {},
+         tx {};
+  char rxBuffer[_BUFFER_SIZE] {},
+       txBuffer[_BUFFER_SIZE] {};
+
+private:
+  template <class T> T _inspect();
+  inline size_t _prepare();
+
+  template <class... Args> size_t _prepare(const char*, Args...);
+  template <class T, class... Args> size_t _prepare(T, Args...);
+  size_t _rx {},
+         _tx {};
 };
 
 byte pgm_read_byte(char const*);

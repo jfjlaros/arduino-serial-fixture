@@ -4,14 +4,14 @@
 /**
  * Constructor.
  */
-Stream::Stream(void) {
+Stream::Stream() {
   reset();
 }
 
 /**
  * Reset the internal counters.
  */
-void Stream::reset(void) {
+void Stream::reset() {
   int i;
 
   rx = 0;
@@ -30,7 +30,7 @@ void Stream::reset(void) {
  *
  * @return Number of bytes.
  */
-int Stream::available(void) {
+int Stream::available() {
   return _rx - rx;
 }
 
@@ -39,7 +39,7 @@ int Stream::available(void) {
  *
  * @return One byte;
  */
-byte Stream::read(void) {
+byte Stream::read() {
   rx++;
 
   return rxBuffer[rx - 1];
@@ -50,7 +50,7 @@ byte Stream::read(void) {
  *
  * @return One byte;
  */
-byte Stream::peek(void) {
+byte Stream::peek() {
   return rxBuffer[rx];
 }
 
